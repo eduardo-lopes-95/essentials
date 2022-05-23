@@ -1,0 +1,127 @@
+Ch2
+constantes 
+	são valores que não são alterados durante o programa
+	podem ser usados na main, em outras funções, escopo global
+	são declaradas com a keyword static
+	nomes devem ser em letras maiusculas
+	nomes separadas por underline caso sejam composto
+	compilador não infere o tipo, portanto é preciso declarar um tipo
+
+Tipos de dados
+	Caracteres são valores unicode que ocupam 4 bytes de memória
+	Vazio ou () -> valor unitário, equivalente ao null em outras linguagens
+	bingind = receber
+	(_) underline é usado para evitar avisos de que uma variável não esta sendo usada
+	variáveis em rust são imutáveis
+	mut (mutavel) = permite que uma variável tenha seu valor alterado
+	let n = 42u8 / 42_u8 -> n recebe (binding) valor 42 do tipo using de 8 bit
+	//let p12 = p1 + p2; não é possível concatenar referência de memória 
+	let _p12 = p1.to_string() + p2;
+	let p3 = format!("{} {}", p1, p2); 
+	é possível fazer casting (conversões) com "as"
+	alias (apelido) é possível com type. Ex: type magic = u16;
+	
+	rust é uma linguagem orientada a expressões, que são partes de código, como funções ou blocos {},
+	(observação!!! no caso de funções com retorno tipado,
+	temos dois tipos de saída: return algo; | algo 
+	>>>> a 1ª forma não é um idiomatic code (jeito que a linguagem faz algo))
+
+	Um bloco de código é uma expressão que retorna o *valor da última expressão*
+	caso for otimido o ponto e virgula (;), caso seja inserido, o retorno será vazio/()
+
+	& referencia o endereço de memória de onde algo esta guardado, ou seja, é um ponteiro
+	
+	valores na stack podem ser alocados na heap
+
+--------------------------------------------------------------------------------------------------------
+
+Ch3
+
+if, if else, if let
+	rust não tem o recurso de ternário
+	alternativa: let age = if adult {"+18"} else {"-18"};
+
+looping
+	while
+	loop
+	for in
+
+function
+	em Rust não há problemas em colocar outras funções antes ou depois do main,
+	porém é mais legível coloca-lá no topo do código.
+	após -> é especificado o tipo de retorno de uma função
+	o retorno de uma função é o valor da ultima expressão
+	se você tiver mais de um valor para retornar, coloque dentro de uma tupla
+	funções tem tipo. Ex: fn foo(i32) -> i32
+
+attributes
+	#[...] -> representam metadados sobre o código. 
+	Ex: 
+	*** podem evitar avisos
+		#[warn(unused_variables)]
+
+	*** ativar recursos de compilação
+
+	*** benchmark code
+		#[bench]
+
+	*** compilação condicional
+		ativar/desativar funções em S.O diferentes 
+		#[cfg(target_os = "windows")]
+
+	*** unit test
+		#[test]
+
+teste
+	para rodar teste em Rust precisamos rodar no console `cargo test` onde o compilador vai procurar
+	pelo atributo #[test] no código.
+	Utilize asserts para testar o código:
+		assert_eq!(actual, expect); o valor atual é igual ao esperado? 
+		assert!(bool); a condição é verdadeira ou falsa? 2+3 == 5 ? true
+	
+	como podemos testar a falha do código?
+	#[should_panic(expect = "assertion failed")]
+	onde panic significa crash (quebra)
+	#[test]
+	#[should_panic(expected = "assertion failed")]
+	fn failing_test() {
+		assert!(6 == 2 + 3);
+	}
+
+	como podemos desabilitar um test?
+	só colocar o atributo #[ignore]
+	#[test]
+	#[ignore]
+	fn foo() {
+		assert!(2 + 3 == 6);
+	}
+
+testar com cargo
+	Qual a diferença entre lib e bin em rust? 
+	
+	bin é um projeto executável que contém a função main, roda através do comando cargo run
+	
+	lib não é um projeto executável pois contém um template de teste, roda através do comando cargo test
+	
+	rodar um teste -> cargo test nome_teste
+	
+	rodar todos os testes -> cargo test
+	
+	caso algum teste dependa de outro é interessante rodá-los dentro de uma mesma thread, para isso
+	utilize -> cargo test -- -test-threads=1
+
+Modulos de teste
+	testes são separados em dois tipos de aplicações:
+		*** Testes unitários são escritos no modulo test no arquivo tests.rs na pasta src
+		*** Teste de integração são escritos no arquivo lib.rs na pasta tests
+
+		>> a função que vai passar pelo teste unitário fica no caminho src\lib.rs
+		>> o teste unitário fica no caminho src\tests.rs
+		>> o teste de integração fica no caminho tests\lib.rs
+		
+		Como chamar as funções da aplicação para realizar testes unitários?
+		use super::*;
+
+		Testes unitários estão contidos em módulos de test (mod test)
+
+https://nickymeuleman.netlify.app/garden/rust-expression-statement
