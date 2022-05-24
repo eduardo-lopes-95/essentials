@@ -32,7 +32,38 @@ fn main() {
     // println!("{}", r"Ru\nst");
     // println!("{}", r#"Ru\nst"#);
     
-    println!("{:?}", f64::from_str("3.6"));
-    let number: f64 = f64::from_str("3.7").unwrap();
-    println!("{}", number);
+    // println!("{:?}", f64::from_str("3.6"));
+    // let number: f64 = f64::from_str("3.7").unwrap();
+    // println!("{}", number);
+
+    // let mut empty: [i32; 10] = [0; 10];
+    // println!("{:?}", empty);
+
+    // let mut numbers: Vec<i32> = Vec::new();
+    // let mut magic_numbers = vec!(7i32, 42, 47, 45, 54);
+    // println!("{:?}", numbers);
+    // println!("{:?}", magic_numbers);
+    
+    // let rgvec: Vec<i32> = (0..7).collect();
+    // println!("{:?}", rgvec);
+    
+    // let location = "Middle-Earth";
+    // let part = &location[7..12];
+    // println!("{}", part);//Earth
+
+    // let magico = "Merlin";
+    // let mut chars: Vec<char> = magico.chars().collect();
+    // chars.sort();
+    // for c in chars.iter() {
+    //     print!("{} ", c);
+    // }
+    
+    // let v: Vec<&str> = "o magico de oz".split(" ").collect();
+    // print!("{:?} ", v); //["o", "magico", "de", "oz"] 
+    
+    // let v: Vec<&str> = "abc1def2ghi".split(|c:char| c.is_numeric()).collect();
+    // print!("{:?} ", v); //["abc", "def", "ghi"] 
+
+    
+
 }

@@ -182,5 +182,37 @@ Ch4
 					Ex: let number2: f64 = f64::from_str("3.7").unwrap(); //3.7
 					O unwrap serve para acessar o conteúdo do Result (Ok)
 
+	Array
+		>> Declarando um array vazio
+			Ex: let mut empty: [i32; 0] = [];
+    			println!("{:?}", empty); //[]
+			
+		>> Declarando um array de 10 posições preenchido com zeros
+			Ex: let mut empty: [i32; 10] = [0; 10]; 
+				//Crie um vetor que aceite valores do tipo i32, contendo 10 posições = preenche 10 posições com 0
+    			println!("{:?}", empty); //[]
+
+		>> Acessar o tamanho do array: arr.len()
+		>> Acessar a ultima posição: arr.len() - 1; 
+
+	Vetores
+		>> Há duas maneiras de declarar vetores:
+			
+			>>> new::()
+				Ex: let mut numbers: Vec<i32> = Vec::new();
+			
+			>>> vec!
+    			Ex: let mut magic_numbers = vec!(7i32, 42, 47, 45, 54);
+			
+		>>> Contruindo vetores a partir de range:
+			Ex: let rgvec: Vec<i32> = (0..7).collect();
+    			println!("{:?}", rgvec); //[0, 1, 2, 3, 4, 5, 6]
+				Método collect serve para construir a coleção
+
+		>>> Como é possível alterar o conteúdo do 
+
+
+
+
 
 https://nickymeuleman.netlify.app/garden/rust-expression-statement
