@@ -110,18 +110,77 @@ testar com cargo
 	caso algum teste dependa de outro é interessante rodá-los dentro de uma mesma thread, para isso
 	utilize -> cargo test -- -test-threads=1
 
-Modulos de teste
-	testes são separados em dois tipos de aplicações:
-		*** Testes unitários são escritos no modulo test no arquivo tests.rs na pasta src
-		*** Teste de integração são escritos no arquivo lib.rs na pasta tests
+	Modulos de teste
+		testes são separados em dois tipos de aplicações:
+			*** Testes unitários são escritos no modulo test no arquivo tests.rs na pasta src
+			*** Teste de integração são escritos no arquivo lib.rs na pasta tests
 
-		>> a função que vai passar pelo teste unitário fica no caminho src\lib.rs
-		>> o teste unitário fica no caminho src\tests.rs
-		>> o teste de integração fica no caminho tests\lib.rs
-		
-		Como chamar as funções da aplicação para realizar testes unitários?
-		use super::*;
+			>> a função que vai passar pelo teste unitário fica no caminho src\lib.rs
+			>> o teste unitário fica no caminho src\tests.rs
+			>> o teste de integração fica no caminho tests\lib.rs
+			
+			Como chamar as funções da aplicação para realizar testes unitários?
+			use super::*;
 
-		Testes unitários estão contidos em módulos de test (mod test)
+			Testes unitários estão contidos em módulos de test (mod test)
+
+Ch4
+	String
+		Existem dois tipos de strings em Rust:
+			>> string slice (&str) 
+				>>> onde & é a referência para uma string
+				>>> são imutáveis
+				>>> tamanho fixo
+					let nome1 = "Merlin";
+					let nome2: &str = "Gandalf";
+			
+				string literal = 
+					>>> armazenada diretamente no executável do programa, ou seja, é uma constante global
+					>>> tem o tempo de vida da aplicação
+						let nome3: &'static str = "Aragorn";
+			
+			>> String (buffer)
+				>>> é o conjunto de caracters em si
+				>>> são mutáveis
+				>>> tamanho variádo
+				>>> são armazenadas na Heap
+				>>> toda vez que ela cresce, precisa ser realocada
+					let mut str1 = String::new();
+
+			>> Converter de slice string (&str) para String?
+				>>> Utilize a função to_string()
+					Ex: let mut str3 = nome1.to_string();
+
+			>> String slice pode ser criada com a notação de range (..).
+					Ex: let nome1 = "Merlin";
+						let nome1_slice = &nome1[1..=2] //Mer
+				
+			>> Como percorrer caracter por caracter?
+				>>> Utilize a função chars()
+					Ex: let nome2 = "Aragorn";
+						for c in nome2.chars(){
+							print!("{} ",c)
+						}
+			>> Como adicionar sequencia de caracteres?
+				>>> Utilize o método push()
+					let mut str6 = String::new(); //String vazia
+    				str6.push_str("Legolas"); //
+					println!("{}", str6) //Legolas
+			
+			>> Como adicionar caracteres?
+				>>> Utilize o método push()
+					Ex: str6.push('s');
+					println!("{}", str6) //Legolass
+			
+			>> Sempre que uma string for receber uma string como parametro, declare como string slice,
+			   assim não precisaremos alocar na heap.
+			   Ex: fn foo(s : &str) -> usize {s.len()}
+
+			>> Como converter números em string? 
+				>>> Utilize from_str
+						let number1: f64 = f64::from_str("3.6")); //Ok(3.6)
+					Ex: let number2: f64 = f64::from_str("3.7").unwrap(); //3.7
+					O unwrap serve para acessar o conteúdo do Result (Ok)
+
 
 https://nickymeuleman.netlify.app/garden/rust-expression-statement
