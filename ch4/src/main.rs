@@ -63,7 +63,51 @@ fn main() {
     
     // let v: Vec<&str> = "abc1def2ghi".split(|c:char| c.is_numeric()).collect();
     // print!("{:?} ", v); //["abc", "def", "ghi"] 
+ 
+    // let mut strength = 78;
+    // let triples = |n| {3 * n};
+    // strength = again(triples, strength);
+    // println!("{}", strength);
 
+    // let m: i32 = 42;
+    // let print_add_move = move |s:i32| {
+    //     println!("m is {}", m);
+    //     m + s
+    // };
+
+    // let mut rng = 0..=7;
+    // println!("> {:?}", rng.next());
+    // println!("> {:?}", rng.next());
+    // for elem in rng {
+    //     print!("{} - ", elem);
+    // }
+
+    // let aliens = ["A", "B", "C", "D", "E"];
+    // for alien in aliens.iter().rev(){
+    //     println!("{}", alien);
+    // }
+
+    let mut _range = 0..100;
+    // let range_vec: Vec<i32> = range.collect();
+    // print!("{:?} ", range_vec);
+    //A função collect() percorre todo o range, "copia" todos os elementos e colocar dentro de um container
     
-
+    // let encontrar_42 = range.find(|n| *n >= 42);
+    // print!("{:?} ", encontrar_42.unwrap());
+    
+    // let mut range = 0..100;
+    // let range_even = range.filter(|n| *n % 2 == 0).collect::<Vec<i32>>();
+    // print!("{:?} ", range_even);
+    
+    // let mut range_even_pow = range.filter(|n| n % 2 == 0)
+    // .map(|n| n * n * n)
+    // .collect::<Vec<i32>>();
+    // print!("{:?} ", range_even_pow);
+    
+    // let sum = (0..10).fold(0, |sum, n| sum + n);
+    // print!("{} ", sum);
 }
+
+// pub fn again< F: Fn(i32) -> i32> (f: F, s:i32) -> i32 { f(f(s))}
+// //Higher order function = função que recebe uma outra função como parâmetro
+// //F: Fn(i32) -> i32, F é um tipo função (Fn) que recebe i32 como parâmetro, por fim, F retorna um i32

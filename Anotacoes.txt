@@ -209,10 +209,35 @@ Ch4
     			println!("{:?}", rgvec); //[0, 1, 2, 3, 4, 5, 6]
 				Método collect serve para construir a coleção
 
-		>>> Como é possível alterar o conteúdo do 
+	Higher order function 
+		>>> função que recebe uma outra função como parâmetro
+			pub fn again< F: Fn(i32) -> i32> (f: F, s:i32) -> i32 { f(f(s))}
+			F: Fn(i32) -> i32, F é um tipo função (Fn) que recebe i32 como parâmetro, por fim, F retorna um i32
 
+	Função Anonima
+		>>> let triplo = |n| {3 * n};
 
+	Iteradores
+		>>> são objetos que retornam os itens de uma coleção em uma sequencia
+		>>> são lazy por natureza, ou seja, chamado por necessidade, não geram valor a menos que sejam chamados
+			let mut rng = 0..=7;
+    		println!("> {:?}", rng.next());
 
+			.iter() itera sobre um array/vetor
+			
+			&nome_variavel_iteradora = serve como iterador
+				>>Muito mais performatico e seguro do que usar indexação.
+			
+			.iter().rev() inverte a ordem
 
+	Consumers and adapters
+		>>> iteradores são lazy (call-by-need) e tem que ser ativados pela invocação de quem vai consumí-los
+		>>> find() = retornar o 1º valor que valida uma condição, o resultado é encapsulado por um option
+		>>> filter() = retorna uma nova coleção de iteraveis a partir da coleção antiga
+		>>> map() = cria um novo iterável a partir do original passando por todos os elementos
+		>>> take(x) = pega x quantidade de algo																																																																																																																																
+		>>> fold() = chamado de reduce ou inject, tem por objetivo reduzir a quantidade de dados
+					 Necessita de dois parametros = um valor inicial e uma clojure com dois argumentos: acumulador e os elementos
+					 let sum = (0..10).fold(0, |sum, n| sum + n);
 
 https://nickymeuleman.netlify.app/garden/rust-expression-statement
