@@ -240,4 +240,6 @@ Ch4
 					 Necessita de dois parametros = um valor inicial e uma clojure com dois argumentos: acumulador e os elementos
 					 let sum = (0..10).fold(0, |sum, n| sum + n);
 
+	
+
 https://nickymeuleman.netlify.app/garden/rust-expression-statement
