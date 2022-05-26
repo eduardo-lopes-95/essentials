@@ -273,8 +273,6 @@ Ch4
 		>>> Function generic
 			estudar mais
 
-
-
 	Trait
 		>>> são features da linguagem análogos a interfaces / classes abstratas em POO
 		>>> Curiosidade: Todas as operações (soma, subtração, divisão, multiplicação) são definidas através de
