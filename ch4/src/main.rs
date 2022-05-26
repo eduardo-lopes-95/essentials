@@ -127,7 +127,7 @@ fn main() {
     // //y é um tipo <U> qualquer
 
     generic("Ola");
-    foo("Oi", 25);
+    // foo("Oi", 25);
 }
 
 // pub fn again< F: Fn(i32) -> i32> (f: F, s:i32) -> i32 { f(f(s))}
