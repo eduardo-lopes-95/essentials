@@ -239,5 +239,60 @@ Ch4
 		>>> fold() = chamado de reduce ou inject, tem por objetivo reduzir a quantidade de dados
 					 Necessita de dois parametros = um valor inicial e uma clojure com dois argumentos: acumulador e os elementos
 					 let sum = (0..10).fold(0, |sum, n| sum + n);
+	
+	Generics 
+		>>> Generics são chamados de "parametros poliformicos" na teoria,
+		isso significa que tipos ou funções podem ter multiplas formas
+		
+		>>> Usar generics permite reutilizar code significativamente,
+		isso significa, que o compilador ao detectar que uma função,
+		struct ou enum é do tipo genérico, se responsabilizará pela criação concreta
+		de determinado recurso quando um novo tipo <T> (i32, f32,...) precisar ser gerado.
+
+		>>> Struct generic
+			***fields precisam ser do mesmo tipo ao serem instanciados
+				struct Point<T>{
+					x: T,
+					y: T,
+				}
+
+				//let point1 = Point{x:42, y:12.2}; er - tipos diferentes
+				//let point2 = Point{x:42, y:12};   ok - tipos iguais
+				//são de tipos iguais <T> porém qualquer (i32, f32)
+				
+				struct Coordination<T, U>{
+					x: T,
+					y: U
+				}
+				
+				let coor1 = Coordination{x:42, y:12.2}; ok - tipos diferentes
+				let coor2 = Coordination{x:42, y:12};   ok - tipos iguais
+				//x é um tipo <T> qualquer
+				//y é um tipo <U> qualquer
+
+		>>> Function generic
+			estudar mais
+
+
+
+	Trait
+		>>> são features da linguagem análogos a interfaces / classes abstratas em POO
+		>>> Curiosidade: Todas as operações (soma, subtração, divisão, multiplicação) são definidas através de
+		trais, exemplo disso é a soma que é definida por std::ops::Add. Dessa forma, quando você vê o "sinal"
+		de soma, na verdade, é uma sintaxe sugar de um método de uma interface (trait), o que de certa forma,
+		recai sobre o conceito de abstração, sendo esse processo uma conversão que o compilador realiza.
+		a + b = a.add(b);
+
+
+
+
+
+
+
+
+
+
+
+
 
 https://nickymeuleman.netlify.app/garden/rust-expression-statement

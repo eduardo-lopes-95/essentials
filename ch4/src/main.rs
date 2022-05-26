@@ -106,8 +106,37 @@ fn main() {
     
     // let sum = (0..10).fold(0, |sum, n| sum + n);
     // print!("{} ", sum);
+
+    // struct Point<T>{
+    //     x: T,
+    //     y: T,
+    // }
+
+    // //let point1 = Point{x:42, y:12.2}; er - tipos diferentes
+    // //let point2 = Point{x:42, y:12};   ok - tipos iguais
+    // //são de tipos iguais <T> porém qualquer (i32, f32)
+    
+    // struct Coordination<T, U>{
+    //     x: T,
+    //     y: U
+    // }
+    
+    // let coor1 = Coordination{x:42, y:12.2}; ok - tipos diferentes
+    // let coor2 = Coordination{x:42, y:12};   ok - tipos iguais
+    // //x é um tipo <T> qualquer
+    // //y é um tipo <U> qualquer
+
+    generic("Ola");
+    foo("Oi", 25);
 }
 
 // pub fn again< F: Fn(i32) -> i32> (f: F, s:i32) -> i32 { f(f(s))}
 // //Higher order function = função que recebe uma outra função como parâmetro
 // //F: Fn(i32) -> i32, F é um tipo função (Fn) que recebe i32 como parâmetro, por fim, F retorna um i32
+use std::fmt::Display;
+use std::ops::Add;
+
+pub fn generic<T: Display>(var:T){
+    println!("{}", var);
+}
+
