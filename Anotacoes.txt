@@ -272,9 +272,18 @@ Ch4
 
 		>>> Function generic
 			estudar mais
+Ch6
+	POO
+		>>> Associated function em struct
+		>>> Methods on struct
+		>>> Constructor Pattern
+		>>> Builder Pattern = a construção da instância é encaminhada para uma estrutura de criação de struct,
+			com um construtor padrão, métodos que mudam propriedades e um método que retorna a instancia so struct original
+		>>> Method on tuples and enums
 
 	Trait
 		>>> são features da linguagem análogos a interfaces / classes abstratas em POO
+		>>> contém a descrição de métodos, isto é, tipo de declaração e sem corpo, pois ao ser implementada que conterá a lógica.
 		>>> Curiosidade: Todas as operações (soma, subtração, divisão, multiplicação) são definidas através de
 		trais, exemplo disso é a soma que é definida por std::ops::Add. Dessa forma, quando você vê o "sinal"
 		de soma, na verdade, é uma sintaxe sugar de um método de uma interface (trait), o que de certa forma,

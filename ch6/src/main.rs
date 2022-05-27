@@ -1,45 +1,67 @@
+#[derive(Debug)]
 struct Alien{
+    name: &'static str,
     health: u32,
     damage: u32,
 }
-//implementa no Alien (struct) a função new que retorna um Alien
-impl Alien{
-    
-    //função estática
-    fn new(mut h:u32, d:u32) -> Alien{
-        if h > 100 {h = 100;}
-        Alien {health: h, damage: d}
-    }
-    
-    //função estática
-    fn foo() -> () {
-        print!("Ola")
-    }
 
-    fn warn() -> &'static str {
-        "Saia do planeta"
-    }
+#[derive(Debug)]
+struct Zombie{
+    name: &'static str,
+    health: u32,
+    damage: u32,
+}
 
-    //método real
-    fn attack(&self){
-        println!("I attack {}", self.damage)
-    }
-    
-    //não há métodos sobrecarregados (mesmo nome porém parâmetros diferentes) em Rust
-    fn attack_and_suffer(&mut self){
-        self.health -= 10;
+trait Monster{
+    fn ctr(hlt: u32, dam:u32) -> Self;
+    fn attack(&self);
+    fn noise(&self) -> &'static str;
+    fn attack_with_sound(&self){
+        println!("The monster attacks by making an awkward sound {}", self.noise())
     }
 }
 
-fn main() {
-    // let str1 = "abc";
-    // println!("{}", str1.len()); jeito orientado a objetos
-
-    let mut bork = Alien{health:100, damage:5};
-    bork.attack();
-
-    // println!("{}", Alien::warn());
-
-
+impl Monster for Alien{
+    fn attack(&self){
+        println!("I attack! Your health lowers with {} damage points", self.damage);
+    }
     
+    fn ctr(hlt: u32, dam:u32) -> Alien{
+        Alien {name: "Walker", health:hlt, damage: dam}
+    }
+
+    fn noise(&self) -> &'static str{
+        "Ahhhhhhh"
+    }
+    
+    fn attack_with_sound(&self){
+        println!("asdalsdkmslkdmas");
+    }
+}
+
+impl Monster for Zombie{
+    fn attack(&self){
+        println!("I bite you! Your health lowers with {} damage points", 2 * self.damage);
+    }
+
+    fn ctr(hlt: u32, dam:u32) -> Zombie{
+        Zombie {name: "Walker", health:hlt, damage: dam}
+    }
+
+    fn noise(&self) -> &'static str{
+        "Ahhhhhhh"
+    }
+    
+    fn attack_with_sound(&self){
+        println!("asdalsdkmslkdmas");
+    }
+
+}
+
+fn main(){
+    let zb = Zombie{name:"Nemesis", health:80, damage:100};
+    let al = Alien {name:"Chubaca", health:50, damage:70};
+
+    zb.attack_with_sound();
+    al.attack_with_sound();
 }
