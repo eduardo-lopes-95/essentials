@@ -1,4 +1,19 @@
-* ../ch6/Cargo.lock
-* ../ch6/Cargo.toml
-* ../ch6/target/
-* ../ch4/target/
+/ch2/target
+/ch2/Cargo.lock
+/ch2/Cargo.tolm
+
+/ch3/target
+/ch3/Cargo.lock
+/ch3/Cargo.tolm
+
+/ch4/target
+/ch4/Cargo.lock
+/ch4/Cargo.tolm
+
+/ch5/target
+/ch5/Cargo.lock
+/ch5/Cargo.tolm
+
+/ch6/target
+/ch6/Cargo.lock
+/ch6/Cargo.tolm
