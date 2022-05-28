@@ -290,9 +290,26 @@ Ch6
 		recai sobre o conceito de abstração, sendo esse processo uma conversão que o compilador realiza.
 		a + b = a.add(b);
 
-
-
-
+Ch7
+	Lifetime
+		>>> lifetime e escopo são sinônimas
+		>>> entende-se lifetime como uma extensão de uma referência
+		>>> fora do escopo, determinada variável/parâmetro não existirá, a não ser que ela seja globa
+		>>> quando o lifetime termina, a memória é liberada
+		>>> Casos, como em funções, não é necessário declarar
+			o lifetime de um parâmetro porque o compilador conhece o escopo
+			da função, consequentemente, ele se apropria disso e consegue inferir
+			o lifetime (escopo)
+		>>> em contra partida, structs que contém referências ou funções cujos
+			parâmetros são referência, é necessário indicar o lifetime
+		>>> Referência inválida (dangling pointer) quando você esta retornando uma 
+			referência de uma variável/parâmetro local
+		>>> Lifetime elision é um mecanismo que utiliza o borrow checker para fazer
+			inserção de anotações de lifetime no MIR
+			(camada intermediária que faz borrow checking e otimização) automaticamente,
+			é mágica.
+		>>> Se for trabalhar com referência, o compilador vai pedir para indicar
+			o lifetime
 
 
 
