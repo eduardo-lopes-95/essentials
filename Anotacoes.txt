@@ -311,6 +311,22 @@ Ch7
 		>>> Se for trabalhar com referência, o compilador vai pedir para indicar
 			o lifetime
 
+	Copying and moving values
+		>>> Para poder copiar o conteúdo de uma variável para dentro de outra,
+		tenha em mente que o ownership também será transferido, ou seja, houve uma 
+		movimentação e não uma cópia. Dessa forma, ao tenta manipulá-la você receberá
+		um erro dizendo que você esta tentando manipular um valor que foi movido.
+		Esse mecanismo tem o objetivo de eliminar potenciais bugs, pois quando um 
+		conteúdo tem somente um ownership, o valor pode ser alterado sem preocupações.
+		É o mesmo caso quando você tem um filho, ao ficar na casa dos avós,
+		a criança recebeu mimos e tal, quando ela volta para casa,
+		certamente o comportamento já mudou.
+
+		>>> Como tornar um tipo coíável? 
+
+
+
+
 
 
 

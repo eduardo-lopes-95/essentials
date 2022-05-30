@@ -8,14 +8,22 @@ fn main() {
     println!("{}", m); // error: unresolved name `m`.
     println!("{}", o); // error: unresolved name `o`.    
     */
+
+    let n = 42u32;
+    let n2 = n; //não houve movimentação, só copia
+    life(n);
+
+    let mag = MagicNum{value: 42};
+    let mag2 = mag;
+    let mag3 = mag;
 }
 
 //Struct
-struct Magician{
-    //name: &str, //sem 'static o compilador alerta que é necessário indicar o lifetime
-    name: &'static str, //sem 'static o compilador alerta que é necessário indicar o lifetime
-    power: u32
-}
+// struct Magician{
+//     //name: &str, //sem 'static o compilador alerta que é necessário indicar o lifetime
+//     name: &'static str, //sem 'static o compilador alerta que é necessário indicar o lifetime
+//     power: u32
+// }
 
 // struct MagicNumber{
 //     magn: &u32,
@@ -29,12 +37,14 @@ struct MagicNumbers<'a>{
     //as propriedades tem o mesmo lifetime
 }
 
+struct MagicNum{
+    value: u64
+}
 //Funções
 // fn return_magician<'a>() -> &'a Magician{
 //     let mag = Magician{name: "Galdalf", power: 4625};
 //     &mag //err: cannot return reference to local variable `mag`
 //     //Referência inválida: dangling pointer
-    
 // }
 
 fn life(m: u32) -> u32 {
