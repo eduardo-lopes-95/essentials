@@ -322,7 +322,73 @@ Ch7
 		a criança recebeu mimos e tal, quando ela volta para casa,
 		certamente o comportamento já mudou.
 
-		>>> Como tornar um tipo coíável? 
+		>>> Como tornar um valor copiável? 
+		Valores primitivos (int, float, char,...) são copiáveis atráves de binding (=)
+		Ex: let a:i32 = 42;
+			let b = a; //42
+		
+		Para valores não primitivos (string, struct, enum, há duas maneira:
+			*** via trait:
+				Implementando trait Copy, Clone e, em seguida, método clone.
+
+			*** via atributo:
+				#[derive(Copy, Clone)]
+
+		>>> O que significa *self?
+			operador de desreferência, ou seja, é um ponteiro que retorna o valor
+			de uma referência
+
+		Obs: para printar o conteúdo de uma propriedade de um struct
+		implemente o trait Debug através do atributo #[derive(Debug)]
+
+	Pointers
+		>>> São variáveis que contém o endereço de memória de algum valor que está armazenado na
+		stack (tipo primitivos) ou na heap (tipos não primitivos). Como podemos acessar? atráves do
+		operador de desreferência (*), ou seja, tira a referencia (&) e me devolve só o conteúdo.
+		Obs: println!(), macros ou quando um ponteiro é passado como argumento para um método
+		já é feita a desresferência automática.
+
+		>>> Você sabe o que são ponteiros, mas para que eles servem?
+		Imagina que você esta trabalhando com strings, um tipo não primitivo, que na verdade
+		é uma cadeira de caracteres (char), tamanho variável e de alocação dinâmica, ou seja, não
+		sabemos onde está o endereço de memória em tempo de compilação, então a memória tem que fazer
+		um malabarismo com essa cadeira de caracteres tendo de calcular uma maneira de alocar toda essa
+		informação em tempo de execução (runtime). Vamos ter em mente que a memória é como se fosse um
+		armário, onde temos gavetas vazias e gavetas com alguma coisa, organizadas com alguma inteligência, 
+		de forma não sequêncial, perfeito. Mas como você faria para achar a sua blusa com logotipo da Rust?
+		você precisa de uma referência, isso é o ponteiro, endereço de memória como esse 0x7078eff8bc, assim
+		é possível localizar. O compilador do Rust cuida da alocação do ponteiro, liberando memória quando 
+		o lifetime (escopo) termina, diferente, do C/C++ onde você que cuida dessa operação.
+
+		>>> Ao passar o valor de um ponteiro para uma função, é sempre bom usar o mecanismo de
+		refêrencia-desreferência (*&) apesar de alguns artíficios como funções já utilizarem esses
+		mecanismos por debaixo dos panos.
+
+	Reference
+		>>> Referência ou borrowed pointer
+			mutável com mutável != imutável com imutável
+			let mut u = 3.14f64;   let u = 3.14f64;
+			let v = &mut u;		   let v = &u;
+			*v = 3.15;			   println!("{}", v); //3.14
+
+			Um valor mutável também pode ser alterado passando seu endereço como uma referência mutável para
+			uma função.
+			let mut m = 7;
+			add_three_to_magic(&mut m);
+			println!("m is now {}", m); // prints out m is now 10
+
+			fn add_three_to_magic(num: &mut i32) {
+				*num += 3; // value is changed in place through +=
+			}
+
+			Referências são frequentemente usadas como parâmetro de função, pois evitam movimentação,
+			troca de ownership, duplicação da informação, que pode ser grande (string buffer) o que 
+			acarreta em perda de perfomace. Você concorda que é fácil, sentido de performance e velocidade,
+			trabalhar com a referência de algo do que o dado em si? Dessa maneira, somente é copiado o endereço
+			do valor para a função
+
+	Match, struct, and ref
+		>>> 
 
 
 
