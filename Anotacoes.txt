@@ -302,7 +302,7 @@ Ch7
 			o lifetime (escopo)
 		>>> em contra partida, structs que contém referências ou funções cujos
 			parâmetros são referência, é necessário indicar o lifetime
-		>>> Referência inválida (dangling pointer) quando você esta retornando uma 
+		>>> Referência inválida (dangling pointer) é quando você esta retornando uma 
 			referência de uma variável/parâmetro local
 		>>> Lifetime elision é um mecanismo que utiliza o borrow checker para fazer
 			inserção de anotações de lifetime no MIR
@@ -389,6 +389,26 @@ Ch7
 
 	Match, struct, and ref
 		>>> 
+
+	Ownership and Borrowing
+		Quando você esta trabalhando com atribuição/vinculação (binding) entre variáveis,
+		o compilador do Rust transfere o owner (dono) para outro lugar, porque somente ele
+		pode alterar o ponteiro do objeto. Dessa forma, a memória é liberada,
+		ou seja, a responsabilidade sobre aquela valor para a ser de outra variável. 
+		
+		let klaatu:i32 = 50;
+		let k12 = klaatu; //troca de owner, não houve copia de valores
+
+		klaatu não pode mais manipular o valor "50" por dois motivos:
+			>> o ponteiro foi alterado, liberou a memória
+			>> essa responsabilidade é de k12 agora
+		
+		Como eu faria para acessar o valor 50 através de klaatu novamente? Não, 
+		você não vai fazer isso. Ou você vai emprestar (borrow) o valor ou vai passar
+		a referência do valor 50 (reference) através do operador &. Assim, o ownership não foi movida.
+
+		Tá, mas o que é o borrow? é uma referência temporária que consegue acessar o conteúdo
+		do alocador de memória não portando o valor consigo. 
 
 
 
