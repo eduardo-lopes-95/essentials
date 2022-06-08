@@ -390,27 +390,78 @@ Ch7
 	Match, struct, and ref
 		>>> 
 
-	Ownership and Borrowing
-		Quando você esta trabalhando com atribuição/vinculação (binding) entre variáveis,
-		o compilador do Rust transfere o owner (dono) para outro lugar, porque somente ele
-		pode alterar o ponteiro do objeto. Dessa forma, a memória é liberada,
-		ou seja, a responsabilidade sobre aquela valor para a ser de outra variável. 
+	Ownership
+		Quando você esta trabalhando com atribuição/vinculação (binding) entre variáveis
+		cujo conteúdo não é tipo primitivo, o ownership (titularidade) é movida (transferida)
+		para a variável de destino, porque somente owner (proprietário) pode alterar
+		o ponteiro do objeto. Dessa forma, o compilador libera a memória, ou seja, o objeto é 
+		destruído e a responsabilidade sobre aquele valor/conteúdo para
+		a ser de outra variável. 
 		
 		let klaatu:i32 = 50;
-		let k12 = klaatu; //troca de owner, não houve copia de valores
+		let k12 = klaatu; //troca de owner, houve copia
 
 		klaatu não pode mais manipular o valor "50" por dois motivos:
 			>> o ponteiro foi alterado, liberou a memória
 			>> essa responsabilidade é de k12 agora
 		
 		Como eu faria para acessar o valor 50 através de klaatu novamente? Não, 
-		você não vai fazer isso. Ou você vai emprestar (borrow) o valor ou vai passar
+		você não vai fazer isso. Ou você vai pegar emprestado (borrow) o valor ou vai passar
 		a referência do valor 50 (reference) através do operador &. Assim, o ownership não foi movida.
-
+	
+	Borrowing
 		Tá, mas o que é o borrow? é uma referência temporária que consegue acessar o conteúdo
-		do alocador de memória não portando o valor consigo. 
+		do alocador de memória não carregando o valor consigo. Dessa forma, é possível pegar
+		emprestado (borrowing) recursos de outras variáveis. Para isso, utiliza-se o operador
+		de referência &, podendo, ainda, ser combinado com o operador mut.
+		
+		>>borrowing immutable = Acessa e não altera o objeto original.
+			let a = 12;
+			let b = &a;
+			let c = &a;
+			println!("a: {}, b: {} e c: {}", a,b,c); -> 12, 12, 12
+		
+		>>borrowing mutable = Acessa e altera o objeto original
+			let mut a = 12;
+			println!("{}", a); -> 12
+			let b = &mut a;
+			*b += 1;
+			println!("{}", b); -> 13
+			println!("{}", a); -> 13
+		
+		Obs!!! Quando um conteúdo é movido ou pego emprestado (borrowed), o dono original 
+		não pode mais acessar, esse mecanismo previne o dangling pointer (ponteiro aponta para
+		um endereço inválido)
+		pg 163 - essentials
 
+	(Binding)
+		O que pode acontecer quando uma variável recebe outra em Rust? Temos dois cenários:
+			> tipo é copiável (numbers, booleans, static string, arrays, tuples e references)?
+				implementa Copy e Clone por baixo dos panos. 
+				é usada a cópia semântica, ou seja, cria-se um novo objeto que tem o valor da variável original
+				quando fora do escopo, a variável é destruída	
 
+			> tipo ñ é copiável (dynamic strings, boxes, collections, structs, enums e tuple-struct)?
+				ñ implementa Copy, podendo implementar Clone ou não.
+				é usada a movimentação semântica, ou seja, a variável de origem entrega seu objeto
+				para a variável de destino; não há um novo objeto; a variável de origem deixa
+				de ser acessível.
+				quando fora do escopo, a variável é destruída	
+
+	Moving closure
+		sempre pega o ownership de todas as variáveis que passam por ele
+
+	Boxes	
+		>>> Tipo de ponteiro
+		>>> é definido como um tipo genérico T
+		>>> não é um tipo cópiavel, mas sim, movido
+		>>> é usado para alocar objetos na heap
+		>>> podemos referenciar o valor apontado pelo ponteiro do box, dessa forma, tanto
+			o valor contido no box e a nova referência são mutáveis
+		>>> Desreferenciar uma variavel e atribuir um novo valor, este é alocado
+			no endereço de memória do ponteiro original. Consequentemente, a variável
+			de origem não pode ser mais acessada.
+		
 
 
 
