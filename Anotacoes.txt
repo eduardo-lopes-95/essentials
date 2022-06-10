@@ -461,12 +461,48 @@ Ch7
 		>>> Desreferenciar uma variavel e atribuir um novo valor, este é alocado
 			no endereço de memória do ponteiro original. Consequentemente, a variável
 			de origem não pode ser mais acessada.
-		
+
+	Reference counting
+		shared ownership = várias referências para um valor imutável, para isso, Rust
+		disponibiliza o Rc<T>, onde multiplas referências podem compartilhar o mesmo recurso,
+		ou seja, é possível compartilhar o ownership do mesmo valor entre diferentes ponteiros.
 
 
+	Cap 7 - borrow check não ficou claro.
 
+Ch8
+	O que é crate? é um pacote ou biblioteca
+	O que é cargo? gerenciador de pacotes como NuGet, Npm, Pip
+	
+	O que é uma lib em Rust? Quando você estiver trabalhando em
+	um projeto, você não vai colocar todo seu código no arquivo 
+	da classe "main()", como regra de desing, você optará em separar,
+	determinadas parte do código, como estruturas de dados e 
+	funções, em outros arquivos. Para isso existem as bibliotecas
+	compartilhadas
 
+	Como criar?
+		>> cargo new <nome_lib> --lib
+		>> #![crate_type = "lib"] #![crate_name = "mycrate"]
 
+	estrutura de um crate
+		crate
+		  |__ module
+		  		|__ submodule
+						__function, trait,...
+
+	Quais são os tipos de visibilidade de módulos:
+		>> privados (default)
+		>> públicos (visível para outros módulos)
+
+	Criar um módulo:
+		>> cargo new <nome_lib> --lib
+		>> defina os módulos com a palavra reservada mod
+		>> cargo build -> cargo transforma crate em lib. 
+			O resultado é um arquivo com a extensão .rlib
+	
+
+	O que é prelude? 
 
 
 
