@@ -21,3 +21,5 @@
 /ch7/target
 /ch7/Cargo.lock
 /ch7/Cargo.tolm
+ch8/phrases/Cargo.toml
+.vscode/launch.json
